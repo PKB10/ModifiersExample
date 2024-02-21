@@ -68,7 +68,7 @@ struct ThreeInOne: ViewModifier{
     func body(content: Content) -> some View
     {
         content
-        .background(Color.gray)
+        .background(Color.blue)
         .cornerRadius(7)
         .padding()
     }
