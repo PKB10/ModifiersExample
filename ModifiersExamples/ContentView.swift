@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  ModifiersExamples
 //
-//  Created by Priyanka on 21/02/24.
+//  Created by PKB10 on 21/02/24.
 //
 
 import SwiftUI
@@ -10,15 +10,73 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            // 1. Simple modifier
+            Text("Just a Text view")
+            .background(.red)
+            
+            // 2. Multiple simple modifiers
+            Text("Just a Text view")
+            .background(.gray)
+            .cornerRadius(7)
+            .padding()
+
+            Text("Another Text view")
+            .background(.gray)
+            .cornerRadius(7)
+            .padding()
+
+            Text("Yet another Text view!")
+            .background(.gray)
+            .cornerRadius(7)
+            .padding()
+            
+            // 3. Custom modifier by calling modifier()
+            Text("Just a Text view")
+            .modifier(ThreeInOne())
+
+            Text("Another Text view")
+            .modifier(ThreeInOne())
+
+            Text("Yet another Text view!")
+            .modifier(ThreeInOne())
+            
+            // 4. Custom modfier called like regular modifier
+            Text("Just a Text view")
+            .threeInOne()
+
+            Text("Another Text view")
+            .threeInOne()
+
+            Text("Yet another Text view!")
+            .threeInOne()
+            
         }
+        .padding()
+    }
+    
+}
+
+
+
+#Preview {
+    ContentView()
+}
+
+// 3. Custom modifier
+struct ThreeInOne: ViewModifier{
+    func body(content: Content) -> some View
+    {
+        content
+        .background(Color.gray)
+        .cornerRadius(7)
         .padding()
     }
 }
 
-#Preview {
-    ContentView()
+// 4. Extension to call custom modifier by name
+extension View{
+    func threeInOne() -> some View {
+        self.modifier(ThreeInOne())
+    }
 }
